@@ -45,7 +45,6 @@ class ItemController extends Controller
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
             'title'       => 'required',
-            'content'      => 'required',
             'video_code' => 'required'
         );
         $validator = Validator::make(Input::all(), $rules);
@@ -62,7 +61,7 @@ class ItemController extends Controller
             $item->content      = Input::get('content');
             $item->id_category      = Input::get('category');
             $item->video_code = Input::get('video_code');
-            $item->source =null;
+            $item->source =Input::get('source');
             $item->created_at =null;
             $item->updated_at =null;
             $item->save();

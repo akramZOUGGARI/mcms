@@ -54,7 +54,7 @@
             ) }}
             </td>
         </tr>
-
+</table>
 {{ Form::submit('Create the Item!', array('class' => 'btn btn-primary')) }}
 
 {{ Form::close() }}
