@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Item;
 use Input;
@@ -18,7 +19,7 @@ class ItemController extends Controller
     public function index()
     {
         //get all the items
-        $items = Item::all();        
+        $items = DB::table('item')->paginate(2);       
         // load the view and pass the items
         return view('items.index', ['items'=> $items]);
        
