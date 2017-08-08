@@ -1,4 +1,4 @@
-!-- app/views/nerds/show.blade.php -->
+<!-- app/views/nerds/show.blade.php  -->
 
 <!DOCTYPE html>
 <html>
@@ -25,6 +25,9 @@
       
         <p>
             <strong>Title:</strong> {{ $item->title }}<br>
+        </p>
+        <p>
+            <strong>Video:</strong> {{ $item->video_code}}<br>
         </p>
     </div>
 

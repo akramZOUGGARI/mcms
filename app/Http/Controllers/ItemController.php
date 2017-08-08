@@ -84,8 +84,9 @@ class ItemController extends Controller
         $item = Item::find($id);
 
         // show the view and pass the nerd to it
-        return View::make('items.show')
-            ->with('item', $item);
+        // return View::make('items.show')
+        //     ->with('item', $item);
+             return view('items.show',['item'=> $item]);
     }
 
     /**
@@ -97,6 +98,8 @@ class ItemController extends Controller
     public function edit($id)
     {
         //
+           $item = Item::find($id);
+           return view('items.edit',['item'=> $item]);
     }
 
     /**
@@ -107,7 +110,31 @@ class ItemController extends Controller
      */
     public function update($id)
     {
-        //
+        // validate
+        // read more on validation at http://laravel.com/docs/validation
+         $rules = array(
+            'title'       => 'required',
+            'video_code' => 'required'
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('items/' . $id . '/edit')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+            // store
+            $item = Item::find($id);
+
+            $item->title       = Input::get('title');
+            $item->video_code = Input::get('video_code');
+            $item->save();
+
+            // redirect
+            Session::flash('message', 'Successfully updated item!');
+            return Redirect::to('items');
+        }
     }
 
     /**
@@ -118,6 +145,11 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        //
+          $item = Item::find($id);
+        $item->delete();
+
+        // redirect
+        Session::flash('message', 'Successfully deleted the item!');
+        return Redirect::to('items');
     }
 }

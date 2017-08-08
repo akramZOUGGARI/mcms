@@ -12,6 +12,8 @@
 */
 Route::resource('items', 'ItemController');
 Route::resource('create', 'create@ItemController');
+Route::resource('{id}/edit', 'edit@ItemController');
+
 Route::get('/', function () {
     return view('welcome');
 });

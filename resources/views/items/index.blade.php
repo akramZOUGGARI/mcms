@@ -46,6 +46,10 @@
 
             <!-- we will also add show, edit, and delete buttons -->
             <td>
+                 {{ Form::open(array('url' => 'items/' . $value->id, 'class' => 'pull-right')) }}
+                    {{ Form::hidden('_method', 'DELETE') }}
+                    {{ Form::submit('Delete this Item', array('class' => 'btn btn-warning')) }}
+                 {{ Form::close() }}
 
                 <!-- delete the Item (uses the destroy method DESTROY /items/{id} -->
                 <!-- we will add this later since its a little more complicated than the other two buttons -->
