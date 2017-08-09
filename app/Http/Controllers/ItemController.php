@@ -24,6 +24,20 @@ class ItemController extends Controller
        
     }
 
+     /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function all()
+    {
+        //get all the items
+        $items = Item::all();        
+        // load the view and pass the items
+        return view('public.index', ['items'=> $items]);
+       
+    }
+
     /**
      * Show the form for creating a new resource.
      *
